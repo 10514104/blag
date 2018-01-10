@@ -1,18 +1,11 @@
-<!doctype html>
+{% extends 'main/base.html' %}
 {% load staticfiles %}
-<html>
-  <head>
-    <title>部落格</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
-</head>
-  </head>
-  <body>
-    {% include 'main/menu.html' %}
-    <h2>歡迎來到我的部落格</h2>
-    {% include 'main/messages.html' %}
-    <form class="inlineBlock" action="{% url 'article:articleSearch' %}">
+{% block css %}
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+{% endblock %}
+{% block heading %}歡迎蒞臨{% endblock %}
+{% block content %}
+<form class="inlineBlock" action="{% url 'article:articleSearch' %}">
       <input type="text" name="searchTerm">
       <input class="btn" type="submit" value="查詢">
     </form>
@@ -37,8 +30,8 @@
         {% endif %}
       {% endfor %}
       <hr>
-    {% endfor %}    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src={% static 'main/js/deleteConfirm.js' %}></script>
-  </body>
-</html>
+    {% endfor %}
+    {% endblock %}
+{% block script %}
+  <script src={% static 'main/js/deleteConfirm.js' %}></script>
+{% endblock %}   
